@@ -1,5 +1,6 @@
 import { Controller, Get, Request, Post, UseGuards, HttpStatus } from '@nestjs/common';
 import { LocalAuthGuard, AuthService, JwtAuthGuard, BasicAuthGuard } from './auth';
+import { headers } from './constants';
 
 @Controller()
 export class AppController {
@@ -10,6 +11,7 @@ export class AppController {
   healthCheck(): any {
     return {
       statusCode: HttpStatus.OK,
+      headers,
       message: 'OK',
     };
   }
@@ -21,6 +23,7 @@ export class AppController {
 
     return  {
       statusCode: HttpStatus.OK,
+      headers,
       message: 'OK',
       data: {
         ...token,
@@ -33,6 +36,7 @@ export class AppController {
   async getProfile(@Request() req) {
     return {
       statusCode: HttpStatus.OK,
+      headers,
       message: 'OK',
       data: {
         user: req.user,
